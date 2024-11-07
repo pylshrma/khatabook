@@ -31,4 +31,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/hisaab", hisaabRouter);
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000 , () => {
+    console.log('Server listening on port 3000');
+  });

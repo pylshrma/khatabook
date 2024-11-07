@@ -6,8 +6,12 @@ module.exports.isLoggedIn = async function (req, res, next) {
         try {
             let decoded = jwt.verify(req.cookies.token, process.env.JWT_KEY);
             let user = await userModel.findOne({email: decoded.email});
-            req.user = user;
-            next();
+            if (user) {
+                req.user = user;
+                next();
+            } else {
+                return res.redirect("/");
+            }
         }
         catch (err) {
             return res.redirect("/");

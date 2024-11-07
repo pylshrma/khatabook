@@ -86,8 +86,11 @@ module.exports.logoutController = async function (req, res) {
 };
 
 module.exports.profileController = async function (req, res) {
-    const id = req.user.id;
-    console.log(id)
+    if (req.user) {
+        const id = req.user.id;
+      } else {
+        console.log("req.user is null");
+      }
     
 
     let byDate = Number(req.query.byDate);
